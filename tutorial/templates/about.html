@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<style>
+    table, h1{
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<h1>About Page</h1>
+<table class="table table-dark">
+    <tr>
+        <th>Autor</th>
+        <th>Fecha</th>
+        <th>Clima</th>
+    </tr>
+{% for infos in info %}
+    <tr>
+        <td>
+            {{ infos.autor }}
+        </td>
+        <td>
+            {{ infos.fecha }}
+        </td>
+        <td>
+            {{ infos.clima }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
