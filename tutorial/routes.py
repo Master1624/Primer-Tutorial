@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, flash, redirect
 from tutorial.forms import RegisterForm, LoginForm
 from tutorial import db, app
+from flask_login import login_required, current_user, login_user, logout_user
 
 posts=[
     {
@@ -31,7 +32,6 @@ def registro():
     form = RegisterForm()
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!', 'success')
-
         return redirect(url_for('login'))
     return render_template('register.html', titulo='Registro', form=form)
 
@@ -41,6 +41,6 @@ def login():
     if form.validate_on_submit():
         flash(f'Login successful for {form.username.data}!', 'success')
         return redirect(url_for('home'))
-    else:
-        flash('Login Unsuccessful. Please check username and password', 'danger')
+    #else:
+        #flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', titulo='Login', form=form)
