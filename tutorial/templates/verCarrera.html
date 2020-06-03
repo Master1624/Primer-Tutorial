@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="form-group">
+            <label for="ident" class="form-control-label">Identificación Carrera</label>
+            <input type="text" class="form-control form-control-lg" value="{{ carrera.0 }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="ident" class="form-control-label">Nombre Carrera</label>
+            <input type="text" class="form-control form-control-lg" value="{{ carrera.1 }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="ident" class="form-control-label">Extensión Carrera</label>
+            <input type="text" class="form-control form-control-lg" value="{{ carrera.2 }}" readonly>
+        </div>
+        <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#deleteModal">Eliminar Carrera
+        </button>
+        <a class="btn btn-warning float-right" href="{{ url_for('editarCarrera', id_carrera = carrera.0) }}">Editar Carrera</a>
+        <a class="btn btn-outline-dark" href="{{ url_for('carrera') }}">Atrás</a>
+    </div>
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">¿Está seguro de querer eliminar la carrera?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <form action="{{ url_for('eliminarCarrera', id_carrera=carrera.0) }}" method="POST">
+                        <input class="btn btn-danger" type="submit" value="Eliminar">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

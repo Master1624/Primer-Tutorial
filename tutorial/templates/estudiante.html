@@ -1,0 +1,135 @@
+{% extends 'layout.html' %}
+{% block head %}
+    <style>
+        table {
+            text-align: center;
+        }
+
+        #fondito {
+            background-color: green;
+            color: white;
+        }
+
+        div {
+            overflow-x: auto;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron p-3" id="fondito">
+                <h2>Administrar Estudiantes
+                    <button class="btn btn-outline-light float-right" data-toggle="modal" data-target="#mymodal">Crear
+                        Estudiante
+                    </button>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div id="tabla">
+        <table class="table table-hover table-dark">
+            <tr>
+                <th>Identificación</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Carrera</th>
+                <th>Foto</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#editstud">Editar</a>
+                    <a href="" class="btn btn-danger btn-xs" onclick="return confirm('¿Estás seguro de eliminarlo?')">Eliminar</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- Crear Estudiante -->
+    <div class="modal fade" id="mymodal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Crear Carrera</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST">
+                        <div class="form-group">
+                            {{ form.identificacion.label(class="form-control-label") }}
+                            {% if form.identificacion.errors %}
+                            {{ form.identificacion(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.identificacion.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.identificacion(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.nombre.label(class="form-control-label") }}
+                            {% if form.nombre.errors %}
+                                {{ form.nombre(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.nombre.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.nombre(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.apellido.label(class="form-control-label") }}
+                            {% if form.apellido.errors %}
+                                {{ form.apellido(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.apellido.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.apellido(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.carrera.label(class="form-control-label") }}
+                            {% if form.carrera.errors %}
+                                {{ form.carrera(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.carrera.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.carrera(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.foto.label(class="form-control-label") }}
+                            {% if form.foto.errors %}
+                                {{ form.foto(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.foto.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.foto(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-outline-info") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

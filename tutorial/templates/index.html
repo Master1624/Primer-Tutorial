@@ -1,23 +1,22 @@
 {% extends 'layout.html' %}
 
 {% block head %}
-<style>
-    h1{
-        text-align: center;
-    }
-</style>
+    <style>
+        table {
+            text-align: center;
+        }
+
+        .btn {
+            width: 100px;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
-<h1>Home Page</h1>
-{% for informacion in info %}
-{% if informacion.autor == 'Santiago' %}
-<h3>{{ informacion.autor }}</h3>
-<h2>{{ informacion.fecha }}</h2>
-<h4>{{ informacion.clima }}</h4>
-<br>
-{% else %}
-<h4>Falta otro autor o no está inscrito</h4>
-{% endif %}
-{% endfor %}
+
+    <div class="container-fluid">
+        {% block content %}{% endblock %}
+    </div>
+    </div>
+
 {% endblock %}
