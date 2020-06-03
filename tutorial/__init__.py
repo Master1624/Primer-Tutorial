@@ -9,6 +9,7 @@ app.config['MYSQL_HOST'] = secret.dbhost
 app.config['MYSQL_USER'] = secret.dbuser
 app.config['MYSQL_PASSWORD'] = secret.dbpassword
 app.config['MYSQL_DB'] = secret.dbname
+
 db = MySQL(app)
 
 from tutorial import routes
