@@ -48,10 +48,12 @@ def crearCarrera():
             identificacion = form.identificacion.data
             nombre = form.nombre.data
             extension = form.extension.data
+
             args = (identificacion, nombre, extension)
             cursor = db.connection.cursor()
             cursor.callproc('crearCarrera', args)
             db.connection.commit()
+            cursor.close()
 
             flash(f'Ha creado de manera correcta la carrera de {form.nombre.data}!', 'success')
             return redirect(url_for('carrera'))
@@ -68,14 +70,29 @@ def verCarrera(id_carrera):
     datos = cursor.fetchone()
     return render_template('verCarrera.html', titulo = 'Ver Carrera', carrera = datos)
 
-@app.route('carreras/<int:id_carrera>/modificar', methods=['GET', 'POST'])
+@app.route('/carreras/<int:id_carrera>/modificar', methods=['GET', 'POST'])
 def editarCarrera(id_carrera):
     form = CarreraForm()
     if form.validate_on_submit():
         ident = form.identificacion.data
         nombre = form.nombre.data
         extension = form.extension.data
-    pass
+
+        args = (ident, nombre, extension, id_carrera)
+
+        cursor = db.connection.cursor()
+        cursor.callproc('modificarCarrera', args)
+        db.connection.commit()
+        flash(f'Ha modificado de manera correcta la carrera de {form.nombre.data}!', 'success')
+        return redirect(url_for('carrera'))
+    elif request.method == "GET":
+        cursor = db.connection.cursor()
+        cursor.callproc('verCarrera', [id_carrera])
+        for career in cursor.fetchall():
+            form.identificacion.data = career[0]
+            form.nombre.data = career[1]
+            form.extension.data = career[2]
+    return render_template('modificarCarrera.html', nombrecito = 'Modificar Carrera' ,titulo = 'Modificar Carrera', form = form)
 
 @app.route('/carreras/<int:id_carrera>/eliminar', methods=['GET', 'POST'])
 def eliminarCarrera(id_carrera):

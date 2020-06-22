@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
-    <title>Layout</title>
-</head>
-<body>
-    {% for infos in info %}
-    <h1>{{ infos.autor }}</h1>
-    <h2>{{ infos.fecha }}</h2>
-    <h3>{{ infos.clima }}</h3>
-    <br>
-    {% endfor %}
-</body>
-</html>
+{% extends 'index.html' %}
+{% block content %}
+    <h1>Soy un nieto</h1>
+{% endblock %}

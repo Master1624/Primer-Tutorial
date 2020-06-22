@@ -33,16 +33,18 @@
                 <th>Extensión</th>
                 <th></th>
             </tr>
-            <tr>
-                {% for carrera in career %}
+            {% for carrera in career %}
+                <tr>
                     <td>{{ carrera.0 }}</td>
                     <td>{{ carrera.1 }}</td>
                     <td>{{ carrera.2 }}</td>
                     <td>
-                        <h2><a class="btn btn-outline-warning" href="{{ url_for('verCarrera', id_carrera = carrera.0) }}">Ver Carrera</a></h2>
+                        <h2><a class="btn btn-outline-warning"
+                               href="{{ url_for('verCarrera', id_carrera = carrera.0) }}">Ver Carrera</a></h2>
                     </td>
-                {% endfor %}
-            </tr>
+                    <br>
+                </tr>
+            {% endfor %}
         </table>
     </div>
 {% endblock %}

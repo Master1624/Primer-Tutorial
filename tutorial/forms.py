@@ -38,3 +38,4 @@ class CarreraForm(FlaskForm):
     nombre = StringField('Nombre de la Carrera', validators=[DataRequired()])
     extension = StringField('Extensión', validators=[DataRequired()])
     submit = SubmitField('Crear Carrera')
+    modify = SubmitField('Modificar Carrera')
